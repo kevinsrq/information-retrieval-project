@@ -1,1 +1,3 @@
-# recommendation-system
+# Projeto de Recuperação da Informação para um Sistema de Recomendação 
+
+A recuperação da informação é uma área da ciência da computação que se dedica a encontrar e organizar informações relevantes em grandes coleções de documentos. Uma das aplicações da recuperação da informação é a recomendação de filmes, que consiste em sugerir filmes que sejam do interesse do usuário, baseado em suas preferências e histórico de visualização. Neste projeto, propomos um sistema de recomendação de filmes que utiliza redes neurais recorrentes (RNN) e embeddings para representar os filmes e os usuários. O objetivo é comparar o desempenho desse sistema com outros métodos de recomendação baseados em filtragem colaborativa e conteúdo. Esperamos que o sistema proposto seja capaz de gerar recomendações mais precisas e personalizadas, levando em conta não apenas as características dos filmes, mas também o contexto e o comportamento dos usuários.
