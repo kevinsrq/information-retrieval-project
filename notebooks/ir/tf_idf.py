@@ -15,7 +15,7 @@ def log_freq(doc):
     """
     words = doc.split(' ') # Separar o documento em palavras
     freq = pd.Series(words).value_counts() # Contar a frequência de cada palavra
-    log_freq = 1 + np.log2(freq) # Calcular o log na base 2 da frequência
+    log_freq = 1 + np.log10(freq) # Calcular o log na base 2 da frequência
     return log_freq
 
 # Função que aplica a função log_freq a cada documento do dataframe
