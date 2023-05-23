@@ -1,24 +1,47 @@
 import os
 
-def walklevel(some_dir, level=1):
-    # Remove trailing path separator
-    some_dir = some_dir.rstrip(os.path.sep)
+def read_files(doc_dir) -> dict:
+    # Use a list comprehension to get a list of file paths
+    database = [{'filepath': doc_dir,
+                 'filename': filename,
+                 'text': open(os.path.join(doc_dir, filename), 'r').read().strip()}
+                 for filename in os.listdir(doc_dir)]
 
-    # Make sure the directory exists
-    assert os.path.isdir(some_dir)
+    return database
 
-    # Count the number of path separators in the directory path
-    num_sep = some_dir.count(os.path.sep)
+def process_files(doc_dir: str) -> dict:
+    """
+    Processa os arquivos em um diretório e seus subdiretórios.
 
-    # Traverse the directory tree using os.walk()
-    for root, dirs, files in os.walk(some_dir):
+    Args:
+        doc_dir (str): Caminho para o diretório que contém os arquivos.
 
-        # Yield the current directory path, its subdirectories, and its files
-        yield root, dirs, files
+    Returns:
+        list: Uma lista de dicionários contendo os dados processados de cada arquivo.
 
-        # Count the number of path separators in the current directory path
-        num_sep_this = root.count(os.path.sep)
+    """
+    database = []  # Lista para armazenar os dados processados
 
-        # If the current directory level exceeds the specified depth level, remove its subdirectories
-        if num_sep + level <= num_sep_this:
-            del dirs[:]
+    for filepath in os.listdir(doc_dir):  # Percorre os arquivos no diretório
+        for filename in os.listdir(f'{doc_dir}{filepath}'):  # Percorre os arquivos nos subdiretórios
+
+            # Abre o arquivo e lê seu conteúdo
+            with open(os.path.join(doc_dir, filepath, filename), 'r') as f:
+                text_data = f.read().strip()
+
+            try:
+                # Divide o conteúdo do arquivo em header e body
+                header, body = text_data.split('\n\n', maxsplit=1)
+
+                # Adiciona os dados processados à lista database
+                database.append({
+                    'filepath': filepath,
+                    'filename': filename,
+                    'body': body,
+                })
+            except ValueError:
+                # Se ocorrer uma exceção ao dividir o conteúdo, continua para o próximo arquivo
+                continue
+
+    return database
+
