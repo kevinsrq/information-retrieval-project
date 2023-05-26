@@ -1,2 +1,5 @@
 data/*
 references/*
+.vscode/*
+
+notebooks/ir/__pycache__

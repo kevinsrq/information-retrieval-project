@@ -15,7 +15,7 @@ def log_freq(doc):
     """
     words = doc.split(' ') # Separar o documento em palavras
     freq = pd.Series(words).value_counts() # Contar a frequência de cada palavra
-    log_freq = 1 + np.log2(freq) # Calcular o log na base 2 da frequência
+    log_freq = 1 + np.log10(freq) # Calcular o log na base 2 da frequência
     return log_freq
 
 # Função que aplica a função log_freq a cada documento do dataframe
@@ -66,7 +66,7 @@ def tfidf(dataframe, column):
     Ret'urns:
         pandas.DataFrame: O dataframe com os TF-IDFs relativos para cada palavra em cada documento.
 
-    """'
+    """
     tf = ri_tf(dataframe=dataframe, column=column) # Calcular o TF de cada termo em cada documento
     idf = ri_idf(dataframe=dataframe, column=column) # Calcular o IDF de cada termo
 
@@ -74,4 +74,4 @@ def tfidf(dataframe, column):
     for word in tf.index: # Iterar por cada termo do corpus
         df[word] = tf.loc[word]*idf[word] # Calcular o TF-IDF do termo em cada documento
 
-    return pd.DataFrame.from_dict(df, orient='index') # Retornar os resultados em um DataFrame
+    return pd.DataFrame.from_dict(df, orient='index').fillna(0) # Retornar os resultados em um DataFrame
