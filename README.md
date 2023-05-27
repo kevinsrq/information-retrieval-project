@@ -25,6 +25,22 @@ Um índice invertido de texto é uma estrutura de dados que armazena as ocorrên
 
 O índice invertido é uma ferramenta essencial para a recuperação da informação, pois permite realizar consultas complexas e obter resultados relevantes em um curto espaço de tempo. 
 
+$$TF-IDF = TF(t, d) \cdot IDF(t)$$
+
+Onde:  
+
+$TF(t, d)$: representa a frequência do termo t no documento d.  
+$IDF(t)$: representa o inverso da frequência do documento (IDF) do termo t.  
+
+A fórmula completa do IDF é dada por:
+
+$$IDF(t) = \log \left( \frac{N}{DF(t)} \right)$$
+
+Onde:  
+
+$N$ é o número total de documentos na coleção.  
+$DF(t)$ é o número de documentos que contêm o termo t.  
+
 ## Implementação do modelo de recuperação
 
 A recuperação da informação é o processo de encontrar e acessar informações relevantes em um grande conjunto de dados. Existem diferentes modelos computacionais que podem ser usados para representar e organizar as informações, bem como para definir e executar as consultas dos usuários. Neste texto, vamos introduzir alguns dos principais modelos de recuperação da informação, como o modelo booleano, o modelo vetorial e o modelo probabilístico. Também vamos discutir as vantagens e desvantagens de cada um deles, e como eles podem ser aplicados em diferentes contextos e domínios.
